@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Finance & Tax | Asesoría Financiera y Tributaria</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- BARRA DE INDICADORES FINANCIEROS 2026 -->
+    <div class="top-indicators">
+        <div class="indicators-container">
+            <span>📌 <strong>UVT 2026:</strong> $52.374</span>
+            <span>💰 <strong>SMLMV 2026:</strong> $1.750.905</span>
+            <span>📈 <strong>TRM Ref:</strong> $3.950 COP</span>
+            <span>🗓️ <strong>Calendario Tributario:</strong> Al día</span>
+        </div>
+    </div>
+    <!-- 1. ENCABEZADO Y NAVEGACIÓN -->
+    <header class="navbar">
+        <div class="logo">
+            <h2>ML <span>Finance & Tax</span></h2>
+        </div>
+
+        <!-- Botón del menú hamburguesa para celular -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            ☰
+        </button>
+
+        <nav id="navMenu">
+            <ul>
+                <li><a href="#inicio" onclick="cerrarMenu()">Inicio</a></li>
+                <li><a href="#servicios" onclick="cerrarMenu()">Servicios</a></li>
+                <li><a href="#herramientas" onclick="cerrarMenu()">Simulador</a></li>
+                <li><a href="#contacto" onclick="cerrarMenu()">Contacto</a></li>
+                <li><a href="#admin" class="btn-admin">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- 2. SECCIÓN HERO / INICIO -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>ML Finance & Tax: Estrategia Tributaria y Diagnóstico Financiero</h1>
+            <p>Impulsamos la salud financiera y el cumplimiento fiscal de tu empresa con herramientas digitales dinámicas y asesoría especializada por Mariana López.</p>
+            <a href="#servicios" class="btn-primary">Ver Servicios</a>
+        </div>
+    </section>
+
+    <!-- 3. CATÁLOGO DE SERVICIOS -->
+    <section id="servicios" class="servicios-section">
+        <h2>Catálogo de Servicios</h2>
+        <p class="subtitulo">Soluciones contables e inteligentes adaptadas a las necesidades de tu empresa.</p>
+        
+        <div class="grid-servicios">
+            <!-- Servicio 1 -->
+            <div class="card-servicio">
+                <div class="icon">📊</div>
+                <h3>Diagnóstico de Salud Financiera</h3>
+                <p>Análisis de liquidez, nivel de endeudamiento y rentabilidad con recomendaciones estratégicas.</p>
+                <button onclick="verDetalleServicio('salud')" class="btn-servicio">Consultar Servicio</button>
+            </div>
+
+            <!-- Servicio 2 -->
+            <div class="card-servicio">
+                <div class="icon">📑</div>
+                <h3>Planeación y Asesoría Tributaria</h3>
+                <p>Optimización de impuestos, cálculo de IVA, retenciones y proyecciones fiscales a la medida.</p>
+               <button onclick="verDetalleServicio('tributaria')" class="btn-servicio">Consultar Servicio</button>
+            </div>
+
+            <!-- Servicio 3 -->
+            <div class="card-servicio">
+                <div class="icon">💻</div>
+                <h3>Simuladores Financieros Interactive</h3>
+                <p>Acceso a herramientas digitales en tiempo real para calcular indicadores clave e impuestos.</p>
+                <button onclick="verDetalleServicio('simuladores')" class="btn-servicio">Consultar Servicio</button>
+            </div>
+        </div>
+    </section>
+        </div>
+    </section>
+    <!-- 5. SECCIÓN SIMULADOR FINANCIERO Y TRIBUTARIO -->
+    <section id="herramientas" class="simulador-section">
+        <h2>Simulador Financiero & Tributario</h2>
+        <p class="subtitulo">Calcula la Retención en la Fuente estimada según el perfil tributario y concepto en Colombia.</p>
+
+        <div class="simulador-container">
+            <form id="formSimulador" onsubmit="calcularRetencion(event)">
+                
+                <!-- Tipo de Persona -->
+                <div class="form-group">
+                    <label for="tipoPersona">Tipo de Contribuyente / Persona *</label>
+                    <select id="tipoPersona" onchange="actualizarOpcionesConcepto()">
+                        <option value="juridica">Persona Jurídica (Empresa)</option>
+                        <option value="naturalDeclarante">Persona Natural Declarante de Renta</option>
+                        <option value="naturalNoDeclarante">Persona Natural NO Declarante</option>
+                    </select>
+                </div>
+
+                <!-- Conceptos Dinámicos completos -->
+                <div class="form-group">
+                    <label for="tipoConcepto">Concepto de Retención *</label>
+                    <select id="tipoConcepto">
+                        <option value="0.11">Honorarios y Consultoría - Jurídica / Declarante (11.0%)</option>
+                        <option value="0.04">Honorarios y Consultoría - Contratos Específicos (4.0%)</option>
+                        <option value="0.04">Servicios Generales - Jurídica / Declarante (4.0%)</option>
+                        <option value="0.035">Servicios Generales - Declarante Renta (3.5%)</option>
+                        <option value="0.025">Compras Generales - Declarante (2.5%)</option>
+                        <option value="0.04">Arrendamiento de Bienes Inmuebles (4.0%)</option>
+                        <option value="0.20">Arrendamiento de Bienes Muebles (20.0%)</option>
+                        <option value="0.11">Comisiones (11.0%)</option>
+                        <option value="0.01">Servicio de Transporte de Carga (1.0%)</option>
+                    </select>
+                </div>
+
+                <!-- Monto Base -->
+                <div class="form-group">
+                    <label for="montoBase">Monto Base Facturado ($ COP) *</label>
+                    <input type="number" id="montoBase" placeholder="Ej. 2500000" min="0" required>
+                </div>
+
+                <button type="submit" class="btn-primary btn-submit">Calcular Retención</button>
+            </form>
+
+            <!-- Resultado del Cálculo -->
+            <div id="resultadoSimulador" class="resultado-box" style="display: none;">
+                <h3>Resultado de la Simulación</h3>
+                <div class="detalle-calculo">
+                    <p><strong>Monto Base:</strong> <span id="resBase">$0</span></p>
+                    <p><strong>Tarifa Aplicada:</strong> <span id="resTarifa">0%</span></p>
+                    <p><strong>Valor Retención:</strong> <span id="resRetencion">$0</span></p>
+                    <p class="total-neto"><strong>Valor Neto a Pagar / Cobrar:</strong> <span id="resNeto">$0</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 4. SECCIÓN CONTACTO REAL (PASO 2) -->
+    <section id="contacto" class="contacto-section">
+        <h2>Contacto y Asesoría Directa</h2>
+        <p class="subtitulo">Déjanos tus datos y te responderemos con un diagnóstico inicial para tu empresa.</p>
+
+        <div class="contacto-container">
+            <form id="formContacto" class="form-contacto" onsubmit="procesarContacto(event)">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo *</label>
+                    <input type="text" id="nombre" placeholder="Ej. Ana María Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico *</label>
+                    <input type="email" id="correo" placeholder="ejemplo@empresa.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="servicioSelect">Servicio de Interés</label>
+                    <select id="servicioSelect">
+                        <option value="Diagnóstico Financiero">Diagnóstico de Salud Financiera</option>
+                        <option value="Planeación Tributaria">Planeación y Asesoría Tributaria</option>
+                        <option value="Simuladores Digitales">Simuladores Financieros Interactivos</option>
+                        <option value="Consulta General">Consulta General</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Mensaje o Detalle del Requerimiento *</label>
+                    <textarea id="mensaje" rows="4" placeholder="Describe brevemente las necesidades financieras o tributarias de tu negocio..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary btn-submit">Enviar Solicitud</button>
+            </form>
+
+            <div id="confirmacionEnvio" class="confirmacion-oculta">
+                <span class="icon-check">✅</span>
+                <h3>¡Solicitud Recibida!</h3>
+                <p id="textoConfirmacion">Gracias por contactar a ML Finance & Tax. Nos comunicaremos contigo pronto.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+    <script src="script.js"></script>
+</body>
+</html>
+        <!-- 6. PIE DE PÁGINA (FOOTER) -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>ML Finance & Tax</h3>
+                <p>Soluciones contables, tributarias y financieras con precisión y respaldo profesional por Mariana López.</p>
+                <p class="copyright">© 2026 ML Finance & Tax — Desarrollado para Jóvenes creaTIvos</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#herramientas">Simulador</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contacto">
+                <h4>Atención Directa</h4>
+                <p>📍 Medellín - Envigado, Antioquia</p>
+                <p>✉️ <a href="mailto:Marianacontabilidad11@gmail.com" style="color: #cbd5e1; text-decoration: none;">Marianacontabilidad11@gmail.com</a></p>
+                <p>📞 +57 304 546 7957</p>
+                <a href="https://wa.me/573045467957?text=Hola%20Mariana,%20deseo%20consultar%20sobre%20tus%20servicios%20contables%20en%20ML%20Finance%20%26%20Tax" target="_blank" class="btn-whatsapp">
+                    📱 Chatear por WhatsApp
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- ASISTENTE IA CONTABLE FLOTANTE -->
+    <div id="aiChatbot" class="chatbot-container">
+        <button id="chatbotToggle" onclick="toggleChatbot()" class="chatbot-btn">
+            🤖 Asistente IA Contable
+        </button>
+        
+        <div id="chatbotBox" class="chatbot-box" style="display: none;">
+            <div class="chatbot-header">
+                <h4>IA ML Finance & Tax 🧠</h4>
+                <button onclick="toggleChatbot()" class="close-chat">✕</button>
+            </div>
+            <div id="chatMessages" class="chatbot-messages">
+                <p class="bot-msg">¡Hola! Soy la IA de ML Finance & Tax. Pregúntame sobre la UVT, el SMLMV 2026 o retenciones.</p>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="userInput" placeholder="Ej: ¿Cuál es el SMLMV?" onkeypress="handleKeyPress(event)">
+                <button onclick="enviarMensajeIA()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+        <!-- SECCIÓN DE PANEL ADMIN -->
+    <section id="admin" class="admin-section">
+        <div class="admin-container">
+            <h2>🔐 Panel de Administración (ML Finance)</h2>
+            <p class="subtitulo">Acceso exclusivo para gestión interna de solicitudes.</p>
+
+            <!-- Formulario de Login Admin -->
+            <div id="adminLoginForm" class="admin-card">
+                <h3>Iniciar Sesión</h3>
+                <div class="input-group">
+                    <label>Usuario</label>
+                    <input type="text" id="adminUser" placeholder="admin">
+                </div>
+                <div class="input-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="adminPass" placeholder="••••••••">
+                </div>
+                <button onclick="loginAdmin()" class="btn-admin">Ingresar al Panel</button>
+                <p id="loginError" class="error-msg" style="display: none;">⚠️ Credenciales incorrectas. Intenta con: <strong>admin</strong> / <strong>1234</strong></p>
+            </div>
+
+            <!-- Vista Interna del Admin (Oculta al inicio) -->
+            <div id="adminDashboard" class="admin-card" style="display: none;">
+                <div class="dashboard-header">
+                    <h3>📥 Solicitudes de Clientes Registradas</h3>
+                    <button onclick="logoutAdmin()" class="btn-logout">Cerrar Sesión</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="solicitudesTable">
+                            <tr>
+                                <td>22/10/2026</td>
+                                <td>Carlos Mendoza</td>
+                                <td>Diagnóstico Financiero</td>
+                                <td><span class="badge pendiente">Pendiente</span></td>
+                            </tr>
+                            <tr>
+                                <td>21/10/2026</td>
+                                <td>Elena Gómez</td>
+                                <td>Planeación Tributaria</td>
+                                <td><span class="badge completado">Atendido</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- VENTANA EMERGENTE (MODAL) PARA DETALLE DE SERVICIOS -->
+    <div id="serviceModal" class="modal-container" style="display: none;">
+        <div class="modal-content">
+            <button onclick="cerrarModal()" class="modal-close">✕</button>
+            <h3 id="modalTitle">Título del Servicio</h3>
+            <div id="modalBody">
+                <!-- Aquí se carga la información dinámica -->
+            </div>
+            <a id="modalWppBtn" href="#" target="_blank" class="btn-modal-wpp">
+                📱 Agendar Diagnóstico por WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Carga del Script JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
